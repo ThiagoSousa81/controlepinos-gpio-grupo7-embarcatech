@@ -65,12 +65,8 @@ int main()
 {   
     // Inicialização do RGB
     inicializaRGB();
-    
- 
-    // Desligar os LEDs ao iniciar
-    //***** codigo  *****
-
-    init_pwm(BUZZER);  // Inicializa o buzzer com PWM
+    // Inicializa o buzzer com PWM
+    init_pwm(BUZZER);  
 
     // Inicialização do terminal
     stdio_init_all();
@@ -110,8 +106,6 @@ int main()
             acendeRGB(0, 0, 0);
         } else if (strcmp(buffer, "SOM") == 0) {
             printf("TOCANDO POR 2 SEGUNDOS\n");
-
-
             set_buzzer_tone(BUZZER, 440); // Frequência 440 Hz (Nota Lá)
                 sleep_ms(2000);
                 stop_buzzer(BUZZER);
