@@ -11,6 +11,32 @@
 #define led_pin_red 13        // porta do pino 13 LED RGB Vermelho
 #define BUZZER 21             // porta do pino 21 Buzzer
 
+// Jadson de Jesus Santos: Buzzer toca por dois segundos - 
+#include "hardware/gpio.h"
+#include "hardware/pwm.h"
+
+
+void init_pwm(uint gpio) {
+    gpio_set_function(gpio, GPIO_FUNC_PWM); // Configura o GPIO como PWM
+    uint slice_num = pwm_gpio_to_slice_num(gpio);
+    pwm_set_clkdiv(slice_num, 125.0f);     // Define o divisor do clock para 1 MHz
+    pwm_set_wrap(slice_num, 1000);        // Define o TOP para frequência de 1 kHz
+    pwm_set_chan_level(slice_num, pwm_gpio_to_channel(gpio), 0); // Razão cíclica inicial
+    pwm_set_enabled(slice_num, true);     // Habilita o PWM
+}
+
+void set_buzzer_tone(uint gpio, uint freq) {
+    uint slice_num = pwm_gpio_to_slice_num(gpio);
+    uint top = 1000000 / freq;            // Calcula o TOP para a frequência desejada
+    pwm_set_wrap(slice_num, top);
+    pwm_set_chan_level(slice_num, pwm_gpio_to_channel(gpio), top / 2); // 50% duty cycle
+}
+
+void stop_buzzer(uint gpio) {
+    uint slice_num = pwm_gpio_to_slice_num(gpio);
+    pwm_set_chan_level(slice_num, pwm_gpio_to_channel(gpio), 0); // Desliga o PWM
+}
+
 
 void inicializaRGB(){
     gpio_init(led_pin_red);
@@ -38,8 +64,8 @@ int main()
 {
     inicializaRGB();
     // Inicialização do Buzzer
-    gpio_init(BUZZER);
-    gpio_set_dir(BUZZER, GPIO_OUT);
+    init_pwm(BUZZER);
+ 
 
     // Desligar os LEDs ao iniciar
     //***** codigo  *****
@@ -83,7 +109,9 @@ int main()
             acendeRGB(0, 0, 0);
         } else if (strcmp(buffer, "SOM") == 0) {
             printf("TOCANDO POR 2 SEGUNDOS\n");
-        //***** codigo  *****
+            set_buzzer_tone(BUZZER, 440); 
+            sleep_ms(2000);
+            stop_buzzer(BUZZER);
         } else if (strcmp(buffer, "REBOOT") == 0) {
             printf("HABILITANDO O MODO DE GRAVAÇÃO\n");
             // Habilita o modo de gravação
