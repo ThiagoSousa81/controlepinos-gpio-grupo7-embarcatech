@@ -10,7 +10,7 @@
 #define led_pin_green 11      // porta do pino 11 LED RGB Verde
 #define led_pin_blue 12       // porta do pino 12 LED RGB Azul
 #define led_pin_red 13        // porta do pino 13 LED RGB Vermelho
-#define BUZZER 28             // porta do pino 21 Buzzer
+#define BUZZER 21             // porta do pino 21 Buzzer
 
 void init_pwm(uint gpio) {
     gpio_set_function(gpio, GPIO_FUNC_PWM); // Configura o GPIO como PWM
