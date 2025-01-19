@@ -57,14 +57,11 @@ void acendeRGB(int r, int g, int b){
 
 
 int main()
-{
+{   
+    // Inicialização do RGB
     inicializaRGB();
     // Inicialização do Buzzer
     init_pwm(BUZZER);  // Inicializa o buzzer com PWM
-
-
-    // Desligar os LEDs ao iniciar
-    //***** codigo  *****
 
   
     // Inicialização do terminal
@@ -73,9 +70,9 @@ int main()
     char buffer[30]; // Buffer para entrada de texto
 
     // Aguarda até que o terminal esteja conectado
-    /*while (!stdio_usb_connected()) {
+    while (!stdio_usb_connected()) {
         sleep_ms(100); // Aguarda 100ms antes de verificar novamente
-    }*/
+    }
 
     while (true) {
         printf("****** Menu ******\n");
@@ -108,7 +105,6 @@ int main()
             set_buzzer_tone(BUZZER, 440); // Frequência 440 Hz (Nota Lá)
                 sleep_ms(2000);
                 stop_buzzer(BUZZER);
-        //***** codigo  *****
         } else if (strcmp(buffer, "REBOOT") == 0) {
             printf("HABILITANDO O MODO DE GRAVAÇÃO\n");
             // Habilita o modo de gravação
