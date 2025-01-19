@@ -55,7 +55,7 @@ target_include_directories(controle_pinos PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(controle_pinos 
-        
+        hardware_pwm
         )
 
 pico_add_extra_outputs(controle_pinos)
