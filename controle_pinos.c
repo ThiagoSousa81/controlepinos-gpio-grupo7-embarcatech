@@ -9,15 +9,32 @@
 #define led_pin_red 13        // porta do pino 13 LED RGB Vermelho
 #define BUZZER 21             // porta do pino 21 Buzzer
 
-int main() {
-    // Inicialização dos LEDs
+
+void inicializaRGB(){
     gpio_init(led_pin_red);
     gpio_init(led_pin_green);
     gpio_init(led_pin_blue);
     gpio_set_dir(led_pin_red, GPIO_OUT);
     gpio_set_dir(led_pin_green, GPIO_OUT);
     gpio_set_dir(led_pin_blue, GPIO_OUT);
+}
 
+void acendeRGB(int r, int g, int b){
+    // Desliga todos os leds
+    gpio_put(led_pin_red, 0);
+    gpio_put(led_pin_green, 0);
+    gpio_put(led_pin_blue, 0);
+
+    // Acende os leds de acordo com os valores passados
+    gpio_put(led_pin_red, r);
+    gpio_put(led_pin_green, g);
+    gpio_put(led_pin_blue, b);
+}
+
+
+int main()
+{
+    inicializaRGB();
     // Inicialização do Buzzer
     gpio_init(BUZZER);
     gpio_set_dir(BUZZER, GPIO_OUT);

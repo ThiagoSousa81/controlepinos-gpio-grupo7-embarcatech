@@ -1,5 +1,5 @@
 [wokwi]
 version = 1
-firmware = 'build/TecladoM.uf2'
-elf = 'build/TecladoM.elf'
+firmware = 'build/controle_pinos.uf2'
+elf = 'build/controle_pinos.elf'
 gdbServerPort=3333
