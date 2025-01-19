@@ -105,8 +105,10 @@ int main()
             set_buzzer_tone(BUZZER, 440); // Frequência 440 Hz (Nota Lá)
                 sleep_ms(2000);
                 stop_buzzer(BUZZER);
-        } else if (strcmp(buffer, "REBOOT") == 0) {
+        } else if (strcmp(buffer, "REBOOT") == 0) {            
             printf("HABILITANDO O MODO DE GRAVAÇÃO\n");
+            watchdog_reboot(0, 0, 0);
+            /* Códigos para bootsel
             // Habilita o modo de gravação
             printf("Em 3 ");
             sleep_ms(1000);
@@ -117,7 +119,7 @@ int main()
             // Desabilita o Watchdog, se estiver ativado
             watchdog_enable(0, 1);
             // Escreve a sequência mágica no endereço especial
-            reset_usb_boot(0, 0);
+            reset_usb_boot(0, 0);*/            
 
         } else {
             printf("Comando não reconhecido. Tente novamente.\n");
