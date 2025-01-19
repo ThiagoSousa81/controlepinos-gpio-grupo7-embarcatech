@@ -1,5 +1,5 @@
 name: Build Raspberry Pi Pico W Project
-
+# Automação do fluxo de trabalho - Thiago Sousa - https://github.com/ThiagoSousa81
 on:
   push:
     branches:
