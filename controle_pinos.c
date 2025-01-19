@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "pico/stdlib.h"
+// Thiago Sousa: Reboot para bootloader - https://github.com/ThiagoSousa81
+#include "pico/bootrom.h"
 #include "hardware/watchdog.h"
 
 #define led_pin_green 11      // porta do pino 11 LED RGB Verde
@@ -49,9 +51,9 @@ int main()
     char buffer[30]; // Buffer para entrada de texto
 
     // Aguarda até que o terminal esteja conectado
-    while (!stdio_usb_connected()) {
+    /*while (!stdio_usb_connected()) {
         sleep_ms(100); // Aguarda 100ms antes de verificar novamente
-    }
+    }*/
 
     while (true) {
         printf("****** Menu ******\n");
@@ -84,7 +86,18 @@ int main()
         //***** codigo  *****
         } else if (strcmp(buffer, "REBOOT") == 0) {
             printf("HABILITANDO O MODO DE GRAVAÇÃO\n");
-        //***** codigo  *****
+            // Habilita o modo de gravação
+            printf("Em 3 ");
+            sleep_ms(1000);
+            printf("2 ");
+            sleep_ms(1000);
+            printf("1...");
+            sleep_ms(1000);
+            // Desabilita o Watchdog, se estiver ativado
+            watchdog_enable(0, 1);
+            // Escreve a sequência mágica no endereço especial
+            reset_usb_boot(0, 0);
+
         } else {
             printf("Comando não reconhecido. Tente novamente.\n");
         }
