@@ -86,9 +86,9 @@ int main()
     char buffer[30]; // Buffer para entrada de texto
 
     // Aguarda até que o terminal esteja conectado
-    while (!stdio_usb_connected()) {
-        sleep_ms(100); // Aguarda 100ms antes de verificar novamente
-    }
+    //while (!stdio_usb_connected()) {
+        //sleep_ms(100); // Aguarda 100ms antes de verificar novamente
+    //}
 
     while (true) {
         printf("****** Menu ******\n");
