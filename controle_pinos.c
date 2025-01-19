@@ -66,19 +66,19 @@ int main()
         // Comparação de strings
         if (strcmp(buffer, "VERMELHO") == 0) {
             printf("LIGA VERMELHO\n");
-        //***** codigo  *****
+            acendeRGB(1, 0, 0);
         } else if (strcmp(buffer, "AZUL") == 0) {
             printf("LIGA AZUL\n");
-        //***** codigo  *****
+            acendeRGB(0, 0, 1);
         } else if (strcmp(buffer, "VERDE") == 0) {
             printf("LIGA VERDE\n");
-        //***** codigo  *****
+            acendeRGB(0, 1, 0);
         } else if (strcmp(buffer, "BRANCO") == 0) {
             printf("LIGA BRANCO\n");
-            //codigo
+            acendeRGB(1, 1, 1);
         } else if (strcmp(buffer, "DESLIGAR") == 0) {
             printf("DESLIGANDO LEDS\n");
-        //***** codigo  *****
+            acendeRGB(0, 0, 0);
         } else if (strcmp(buffer, "SOM") == 0) {
             printf("TOCANDO POR 2 SEGUNDOS\n");
         //***** codigo  *****
