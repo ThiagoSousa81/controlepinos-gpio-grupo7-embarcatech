@@ -5,17 +5,21 @@
 // Thiago Sousa: Reboot para bootloader - https://github.com/ThiagoSousa81
 #include "pico/bootrom.h"
 #include "hardware/watchdog.h"
+#include "hardware/pwm.h"
 
 #define led_pin_green 11      // porta do pino 11 LED RGB Verde
 #define led_pin_blue 12       // porta do pino 12 LED RGB Azul
 #define led_pin_red 13        // porta do pino 13 LED RGB Vermelho
 #define BUZZER 21             // porta do pino 21 Buzzer
 
+<<<<<<< HEAD
 // Jadson de Jesus Santos: Buzzer toca por dois segundos - 
 #include "hardware/gpio.h"
 #include "hardware/pwm.h"
 
 
+=======
+>>>>>>> 4324bc716a0918610d9bfb434ab143d818bda33b
 void init_pwm(uint gpio) {
     gpio_set_function(gpio, GPIO_FUNC_PWM); // Configura o GPIO como PWM
     uint slice_num = pwm_gpio_to_slice_num(gpio);
@@ -61,14 +65,19 @@ void acendeRGB(int r, int g, int b){
 
 
 int main()
-{
+{   
+    // Inicialização do RGB
     inicializaRGB();
     // Inicialização do Buzzer
+<<<<<<< HEAD
     init_pwm(BUZZER);
  
 
     // Desligar os LEDs ao iniciar
     //***** codigo  *****
+=======
+    init_pwm(BUZZER);  // Inicializa o buzzer com PWM
+>>>>>>> 4324bc716a0918610d9bfb434ab143d818bda33b
 
   
     // Inicialização do terminal
@@ -77,9 +86,9 @@ int main()
     char buffer[30]; // Buffer para entrada de texto
 
     // Aguarda até que o terminal esteja conectado
-    /*while (!stdio_usb_connected()) {
+    while (!stdio_usb_connected()) {
         sleep_ms(100); // Aguarda 100ms antes de verificar novamente
-    }*/
+    }
 
     while (true) {
         printf("****** Menu ******\n");
@@ -109,9 +118,15 @@ int main()
             acendeRGB(0, 0, 0);
         } else if (strcmp(buffer, "SOM") == 0) {
             printf("TOCANDO POR 2 SEGUNDOS\n");
+<<<<<<< HEAD
             set_buzzer_tone(BUZZER, 440); 
             sleep_ms(2000);
             stop_buzzer(BUZZER);
+=======
+            set_buzzer_tone(BUZZER, 440); // Frequência 440 Hz (Nota Lá)
+                sleep_ms(2000);
+                stop_buzzer(BUZZER);
+>>>>>>> 4324bc716a0918610d9bfb434ab143d818bda33b
         } else if (strcmp(buffer, "REBOOT") == 0) {
             printf("HABILITANDO O MODO DE GRAVAÇÃO\n");
             // Habilita o modo de gravação
