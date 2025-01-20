@@ -22,4 +22,5 @@ Com o emprego da ferramenta educacional BitDogLab, foi utilizada a
 porta serial UART para controlar pinos GPIO do
 microcontrolador RP2040.
 
+[Vídeo](https://www.youtube.com/watch?v=aOVHXsIADOk)
 ## 
